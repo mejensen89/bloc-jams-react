@@ -55,23 +55,27 @@ class Album extends Component {
              <h2 className="artist">{this.state.album.artist}</h2>
              <div id="release-info">{this.state.album.releaseInfo}</div>
         	</div>
+
         	<table id="song-list">
         		<colgroup>
-        			<col id="song-numbercolumn" />
+        			<col id="song-number-column" />
         			<col id="song-title-column" />
         			<col id="song-duration-column"/>
         		</colgroup>
         		<tbody>
         		 {
         		 	this.state.album.songs.map( (songs, index) =>
-        		 		<tr className="song" key={index} onClick={() => this.handleSongClick(songs)}>
-        		 			<td>{index+1}</td>
+        		 		<tr className="song" key={index} onClick={() => this.handleSongClick(songs)}
+        		 		  >
+        		 			<td>{index+1} <i className='icon ion-md-pause'></i <i className='icon ion-md-play'></i> </td>
         		 			<td>{songs.title}</td>
-        		 			<td>{songs.duration}</td> 
+        		 			<td>{songs.duration}</td>
         		 		</tr>
-        		 )}
-        		</tbody>
+
+        		 	)}
+        		</tbody>        		
         	</table>
+
         </section>
        </section>
      );
