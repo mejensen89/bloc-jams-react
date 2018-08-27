@@ -14,7 +14,12 @@ class Album extends Component {
 			album: album,
 			currentSong: album.songs[0],
 			isPlaying: false,
+<<<<<<< HEAD
 			isHoveredSong: null
+=======
+			hover: false,
+			isHovered: false, 
+>>>>>>> 63487c1226f3fca69d4389bccc0ea8f7653601ca
 	};
 
     	this.audioElement = document.createElement('audio');
@@ -80,6 +85,7 @@ class Album extends Component {
         		<tbody>
         		 {
         		 	this.state.album.songs.map( (songs, index) =>
+<<<<<<< HEAD
         		 		<tr className="song" 
         		 		key={index} 
         		 		onClick={() => this.handleSongClick(songs) }
@@ -93,6 +99,22 @@ class Album extends Component {
         	 )}
         	</tbody>        		
         </table>
+=======
+        		 		<tr className="song" key={index} onClick={() => this.handleSongClick(songs) }  >
+              		<td className="song-actions"> 
+                		<button>
+                     	<span className="song-number">{index+1}</span>
+                            
+              		 	</button>
+              		</td>
+        		 			<td>{songs.title}</td>
+        		 			<td>{songs.duration}</td>
+        		 		</tr>
+
+        		 	)}
+        		</tbody>        		
+        	</table>
+>>>>>>> 63487c1226f3fca69d4389bccc0ea8f7653601ca
 
         </section>
        </section>
