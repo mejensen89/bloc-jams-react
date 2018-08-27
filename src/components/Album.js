@@ -14,11 +14,12 @@ class Album extends Component {
 			album: album,
 			currentSong: album.songs[0],
 			isPlaying: false,
-			hover: false 
+			hover: false,
+			isHovered: false, 
 	};
 
     	this.audioElement = document.createElement('audio');
-    	this.audioElement.src = album.songs[0].audoSrc;
+    	this.audioElement.src = album.songs[0].audioSrc;
 	}
 
 	play() {
@@ -77,19 +78,13 @@ class Album extends Component {
         		<tbody>
         		 {
         		 	this.state.album.songs.map( (songs, index) =>
-        		 		<tr className="song" key={index} onClick={() => this.handleSongClick(songs) } onMouseEnter={() => this.setState({isHovered: index+1})} onMouseLeave={() => this.setState({isHovered: false})} >
-              <td className="song-actions"> 
-                <button id="song-action-btns">
-                { (this.state.currentSong.title === songs.title) ?
-                  <i className={this.state.isPlaying ? "ion-md-pause" : "ion-md-play"} > </i>
-                  :
-                  (this.state.isHovered === index+1) ?
-                <span className="ion-play"></span>
-                :
-                 <span className="song-number">{index+1}</span>
-               }
-                </button>
-              </td>
+        		 		<tr className="song" key={index} onClick={() => this.handleSongClick(songs) }  >
+              		<td className="song-actions"> 
+                		<button>
+                     	<span className="song-number">{index+1}</span>
+                            
+              		 	</button>
+              		</td>
         		 			<td>{songs.title}</td>
         		 			<td>{songs.duration}</td>
         		 		</tr>
