@@ -15,7 +15,9 @@ class Album extends Component {
 			album: album,
 			currentSong: album.songs[0],
 			isPlaying: false,
-			isHoveredSong: null
+			isHoveredSong: null,
+      currentTime: 0,
+      duration: album.songs[0].duration
 	};
 
     	this.audioElement = document.createElement('audio');
@@ -32,6 +34,25 @@ class Album extends Component {
 		this.setState({isPlaying: false});
 	}
 
+  componentDidMount() {
+    this.eventListeners = {
+      timeupdate: e => {
+        this.setState({ currentTime: this.audioElement.currentTime });
+      },
+      durationchange: e => {
+        this.setState({ duration: this.audioElement.duration });
+      }
+    };
+    this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
+    this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+  }
+
+  componentWillUnmount() {
+     this.audioElement.src = null;
+     this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
+     this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+   }
+
 	setSong (song) {
 		this.audioElement.src = song.audioSrc;
 		this.setState({ currentSong: song });
@@ -47,6 +68,12 @@ class Album extends Component {
      	}
  	}
 
+   handleTimeChange(e) {
+     const newTime = this.audioElement.duration * e.target.value;
+     this.audioElement.currentTime = newTime;
+     this.setState({ currentTime: newTime });
+   }
+ 
  	playPauseNumber(index) {
 		if (this.state.currentSong.title === this.state.album.songs[index].title && this.state.isPlaying === true){
       		return <span className="icon ion-md-pause"></span>
@@ -115,6 +142,9 @@ class Album extends Component {
           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
+          currentTime={this.audioElement.currentTime}
+          duration={this.audioElement.duration}
+          handleTimeChange={(e) => this.handleTimeChange(e)}
         />
         </section>
        </section>
