@@ -85,6 +85,20 @@ class Album extends Component {
       }
 	   }
     }
+
+    handleVolumeChange(e) {
+      const newVolume = e.target.value;
+      this.audioElement.volume = newVolume;
+      this.setState({currentVolume: newVolume});
+    }
+
+    formatTime(seconds) {
+      if (isNaN(seconds)) return "-:--";
+
+      let date = new Date(null);
+      date.setSeconds(seconds);
+      return date.toISOString().substr(14, 5);
+    }
    
    handlePrevClick() {
     const currentIndex =this.state.album.songs.findIndex(songs => this.state.currentSong === songs);
@@ -145,6 +159,8 @@ class Album extends Component {
           currentTime={this.audioElement.currentTime}
           duration={this.audioElement.duration}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
+          formatTime={(seconds) => this.formatTime(seconds)}
         />
         </section>
        </section>
