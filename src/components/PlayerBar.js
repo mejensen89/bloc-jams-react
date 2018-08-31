@@ -5,8 +5,8 @@ class PlayerBar extends Component {
 
 	render(){
 		return (
-			<section className="player-bar">
-				<section id="buttons">
+			<section className="player-bar tenPad">
+				<section id="buttons" className="blkOut WhiteBack tenPad">
 					<button id="previous" onClick={this.props.handlePrevClick}>
 						<i className="icon ion-md-skip-backward"></i>
 					</button>
@@ -17,8 +17,8 @@ class PlayerBar extends Component {
 						<i className="icon ion-md-skip-forward"></i>
 					</button>
 				</section>
-				<section id="time-control">
-					<div className="current-time">{this.props.formatTime(this.props.currentTime)}</div>
+				<section id="time-control" className="blkOut WhiteBack tenPad">
+					<div className="current-time">Current Time: {this.props.formatTime(this.props.currentTime)}</div>
 					<input
 						type="range"
 						className="seek-bar"
@@ -28,9 +28,9 @@ class PlayerBar extends Component {
 						step="0.01"
 						onChange={this.props.handleTimeChange}
 					/>
-					<div className="total-time">Song Duration {this.props.formatTime(this.props.duration)}</div>
+					<div className="total-time tenPad">Song Duration {this.props.formatTime(this.props.duration)}</div>
 				</section>
-				<section id="volume-control">
+				<section id="volume-control" className="blkOut WhiteBack">
            			<i className="icon ion-md-volume-low"></i>
            			<input 
            			type="range" 
@@ -41,7 +41,7 @@ class PlayerBar extends Component {
            			step="0.01"
            			onChange={this.props.handleVolumeChange} 
            			/>
-           			<div className="icon ion-volume-high"></div>
+           			<i className="icon ion-md-volume-high"></i>
          		</section>
 			</section>
 		);

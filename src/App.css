@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: Helvitica, sans-serif;
+  background-color: gainsboro;
 }
 
 .App-logo {
@@ -26,3 +28,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+

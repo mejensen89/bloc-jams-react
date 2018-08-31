@@ -120,20 +120,26 @@ class Album extends Component {
    render() {
      return (
        <section className="album">
-        <section id="album-info">
-        	<img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
-        	<div className="album-details">
-        		<h1 id="album-title">{this.state.album.title}</h1>
-             <h2 className="artist">{this.state.album.artist}</h2>
-             <div id="release-info">{this.state.album.releaseInfo}</div>
+        <section  className="row" id="album-info">
+        	<div className= "threeWide">
+          <div className="album-details">
+        		<h1 id="album-title">Album Title: {this.state.album.title}</h1>
+             <h2 className="artist"> Artist: {this.state.album.artist}</h2>
+             <div id="release-info"> Release Info: {this.state.album.releaseInfo}</div>
         	</div>
 
-        	<table id="song-list">
+        	<table id="song-list" className="blkOut tenMarg">
+
         		<colgroup>
         			<col id="song-number-column" />
         			<col id="song-title-column" />
         			<col id="song-duration-column"/>
         		</colgroup>
+            <thead className="PaleGreenBack">
+              <td> # </td>
+              <td> Song title </td>
+              <td> Play time </td> 
+            </thead>
         		<tbody>
         		 {
         		 	this.state.album.songs.map( (songs, index) =>
@@ -145,7 +151,7 @@ class Album extends Component {
         		 		  >
               		<td>{this.playPauseNumber(index)}</td>
         		 	<td>{songs.title}</td>
-        		 	<td>{songs.duration}</td>
+        		 	<td>{this.formatTime(songs.duration)}</td>
         		 </tr>
         	 )}
         	</tbody>        		
@@ -161,7 +167,10 @@ class Album extends Component {
           handleTimeChange={(e) => this.handleTimeChange(e)}
           handleVolumeChange={(e) => this.handleVolumeChange(e)}
           formatTime={(seconds) => this.formatTime(seconds)}
+
         />
+        </div>
+        <img id="album-cover-art" className="threeWide imageLarge " src={this.state.album.albumCover} alt={this.state.album.title}/>
         </section>
        </section>
      );
