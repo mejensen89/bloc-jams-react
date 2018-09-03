@@ -135,10 +135,12 @@ class Album extends Component {
         			<col id="song-title-column" />
         			<col id="song-duration-column"/>
         		</colgroup>
-            <thead className="PaleGreenBack">
-              <td> # </td>
-              <td> Song title </td>
-              <td> Play time </td> 
+            <thead>
+              <tr className="PaleGreenBack">
+                <td> # </td>
+                <td> Song title </td>
+                <td> Play time </td> 
+              </tr>
             </thead>
         		<tbody>
         		 {
